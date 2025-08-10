@@ -156,6 +156,6 @@ if st.session_state.simple_model.profits is not None:
     # Combine and save
     chart = (base + signal_points).properties(
         title='HFT Strategy: Profit Over Time with Buy/Sell Signals'
-    )
+    ).interactive()
 
-    st.altair_chart(chart, theme=None)
+    st.altair_chart(chart, theme='streamlit')

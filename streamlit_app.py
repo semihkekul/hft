@@ -7,6 +7,8 @@ import numpy as np
 import pandas as pd
 import altair as alt
 
+st.title("💱 High-Frequency Trading Simulation")
+
 st.set_page_config(
    page_title="HFT Simulation by Semih Kekül",
    page_icon="💱",
@@ -120,7 +122,7 @@ st.sidebar.button(back_testing_text, on_click=on_back_testing_click, disabled = 
 
 
 if st.session_state.data.simulated_stock_prices is not None:
-    st.write("### Simulated Stock Prices")
+    st.write("##### Simulated Stock Prices")
     df = pd.DataFrame({
         "Theoretical Prices": st.session_state.data.theoretical_prices,
         "Market Prices": st.session_state.data.market_prices
@@ -152,10 +154,8 @@ if st.session_state.simple_model.profits is not None:
         shape=alt.Shape('Signal', scale=alt.Scale(domain=['Buy', 'Sell'], range=['triangle-up', 'triangle-down'])),
         tooltip=['Time', 'Profit', 'Signal']
     )
-
+    st.write("##### HFT Strategy: Profit Over Time with Buy/Sell Signals")
     # Combine and save
-    chart = (base + signal_points).properties(
-        title='HFT Strategy: Profit Over Time with Buy/Sell Signals'
-    ).interactive()
+    chart = (base + signal_points).properties().interactive()
 
     st.altair_chart(chart, theme='streamlit')

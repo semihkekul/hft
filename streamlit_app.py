@@ -7,6 +7,12 @@ import numpy as np
 import pandas as pd
 import altair as alt
 
+st.set_page_config(
+   page_title="HFT Simulation by Semih Kekül",
+   page_icon="💱",
+   layout="wide",
+   initial_sidebar_state="expanded",
+)
 
  
 def on_generate_change():

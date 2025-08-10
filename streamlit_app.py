@@ -62,6 +62,7 @@ class Data:
         self.generate_value_change = False
         self.noise = 0.5
         self.model_value_change = False
+        self.dt = 1/252
 
         
 

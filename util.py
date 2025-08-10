@@ -15,9 +15,47 @@ class Util:
     @staticmethod
     def simulate_stock_prices(S0, mu, sigma, T, dt):
         N = int(T / dt)
-        t = np.linspace(0, T, N)
+        t = np.arange(N)  # time as trading days
         W = np.random.standard_normal(size=N)
         W = np.cumsum(W) * np.sqrt(dt)
         X = (mu - 0.5 * sigma**2) * t + sigma * W
         S = S0 * np.exp(X)
         return t, S
+
+
+
+class Model:
+    @staticmethod
+    def simple(market_prices, theoretical_prices, threshold):
+        position = 0
+        cash = 0
+        positions = []
+        profits = []
+        signals = []
+        
+        for i in range(len(market_prices)):
+    
+            if market_prices[i] < theoretical_prices[i] - threshold:
+                position += 1
+                cash -= market_prices[i]
+                signals.append('Buy')
+            elif market_prices[i] > theoretical_prices[i] + threshold and position > 0:
+                position -= 1
+                cash += market_prices[i]
+                signals.append('Sell')
+            else:
+                signals.append(None)
+
+            positions.append(position)
+            profits.append(cash + position * market_prices[i])      
+
+        return profits, signals    
+            
+    @staticmethod
+    def model2():
+        pass
+
+    @staticmethod
+    def model3():
+        pass
+    

@@ -142,7 +142,7 @@ if st.session_state.simple_model.profits is not None:
 
     base = alt.Chart(df).mark_line(color='blue').encode(
         x=alt.X('Time', title='Time (Days)'),
-        y=alt.Y('Profit', title='Cumulative Profit'),
+        y=alt.Y('Profit', title='Profit'),
         tooltip=['Time', 'Profit']
     )
 
